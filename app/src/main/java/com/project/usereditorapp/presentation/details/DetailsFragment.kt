@@ -33,15 +33,15 @@ class DetailsFragment: Fragment(), BackPressListener {
         viewModel = ViewModelProviders.of(requireActivity(), UsersViewModelFactory).get(
             UserDetailsViewModel::class.java)
         sharedModel.state.observe(viewLifecycleOwner) {
+            if(it.message.isNotEmpty()) {
+                Toast.makeText(requireActivity(), it.message, Toast.LENGTH_LONG).show()
+            }
+
             if(it.selectedUser?.second == EntityAction.DELETE) {
                 applyEditMode(false)
                 requireActivity().onBackPressed()
             } else {
                 setup()
-            }
-
-            if(it.message.isNotEmpty()) {
-                Toast.makeText(requireActivity(), it.message, Toast.LENGTH_LONG).show()
             }
         }
         viewModel.state.observe(viewLifecycleOwner) {
