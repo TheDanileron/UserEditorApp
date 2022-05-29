@@ -17,8 +17,8 @@ class ListFragment: Fragment(){
     lateinit var activity: MainActivity
     val adapter by lazy{
         UsersAdapter{
-            activity.navigateToDetails()
             sharedModel.userSelected(it)
+            activity.navigateToDetails()
         }
     }
     override fun onCreateView(

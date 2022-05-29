@@ -39,6 +39,10 @@ class DetailsFragment: Fragment(), BackPressListener {
             } else {
                 setup()
             }
+
+            if(it.message.isNotEmpty()) {
+                Toast.makeText(requireActivity(), it.message, Toast.LENGTH_LONG).show()
+            }
         }
         viewModel.state.observe(viewLifecycleOwner) {
             if(it == null)

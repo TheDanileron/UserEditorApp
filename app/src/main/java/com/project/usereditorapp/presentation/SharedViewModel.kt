@@ -36,7 +36,8 @@ class SharedViewModel(application: Application, private val useCases: UseCases):
 
     fun userSelected(user: User) {
         _state.postValue(_state.value?.copy(
-            selectedUser = Pair(user, EntityAction.VIEW)
+            selectedUser = Pair(user, EntityAction.VIEW),
+            message = ""
         ))
     }
 
@@ -50,12 +51,11 @@ class SharedViewModel(application: Application, private val useCases: UseCases):
                 if(result.isSuccess) {
                     _state.postValue(_state.value?.copy(
                         selectedUser = Pair(updated, EntityAction.UPDATE),
-                        "")
+                        Const.SUCCESS_CODE)
                     )
                 } else {
                     _state.postValue(_state.value?.copy(
-                        selectedUser = Pair(updated, EntityAction.VIEW),
-                        result.exceptionOrNull()?.message ?: Const.FAILED_TO_UPDATE)
+                        message = result.exceptionOrNull()?.message ?: Const.FAILED_TO_UPDATE)
                     )
                 }
             }
@@ -70,11 +70,11 @@ class SharedViewModel(application: Application, private val useCases: UseCases):
                 if(result.isSuccess) {
                     _state.postValue(_state.value?.copy(
                         selectedUser = Pair(it, EntityAction.DELETE),
-                        "")
+                        Const.SUCCESS_CODE)
                     )
                 } else {
                     _state.postValue(_state.value?.copy(
-                        error = result.exceptionOrNull()?.message ?: Const.FAILED_TO_UPDATE)
+                        message = result.exceptionOrNull()?.message ?: Const.FAILED_TO_UPDATE)
                     )
                 }
             }

@@ -11,6 +11,9 @@ class UserDetailsViewModel(application: Application, private val useCases: UseCa
     val _state = MutableLiveData<UserDetailsState>(UserDetailsState())
     val state: LiveData<UserDetailsState> = _state
 
+    init {
+        _state.postValue(UserDetailsState())
+    }
 
     fun getUserPosts(user: User) {
 
