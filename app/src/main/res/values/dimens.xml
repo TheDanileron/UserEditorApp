@@ -1,0 +1,7 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="padding_text">4dp</dimen>
+    <dimen name="padding_default">8dp</dimen>
+    <dimen name="default_text_size">20sp</dimen>
+    <dimen name="text_size_1">22sp</dimen>
+</resources>
